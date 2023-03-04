@@ -23,9 +23,6 @@ services:
     HerMail\:
         resource: '../HerMail/'
 
-    HerMail\Infrastructure\Serialize\AttachmentDtoNormalizer:
-        tags: [ serializer.normalizer ]
-
     Symfony\Component\Serializer\Normalizer\ObjectNormalizer:
         tags: [ 'serializer.normalizer' ]
 
