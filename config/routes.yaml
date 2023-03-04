@@ -4,7 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-api_heath_check:
-    path:       /api/healthcheck
+heath_check:
+    path:       /healthcheck
     controller: App\Controller\HealthcheckController
     methods:    GET
+
+send:
+    path:       /send
+    controller: App\Controller\PostSendMailController
+    methods:    POST
