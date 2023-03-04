@@ -12,17 +12,16 @@ final class SendMailControllerTest extends AbstractBaseFunctional
         // GIVEN
 
         $request = [
-            "to" => "jane.doe@example.com",
-            "subject" => "¡Hola Jane!",
-            "body" => "¡Hola Jane!\n\nEspero que estés teniendo un buen día.\n\nSaludos cordiales,\nJohn",
-            "attachments" => [
+            'to'          => 'jane.doe@example.com',
+            'subject'     => '¡Hola Jane!',
+            'body'        => "¡Hola Jane!\n\nEspero que estés teniendo un buen día.\n\nSaludos cordiales,\nJohn",
+            'attachments' => [
                 [
-                    "name" => "file.csv",
-                    "content" => base64_encode(file_get_contents('tests/Common/file.csv'))
-                ]
-            ]
+                    'name'    => 'file.csv',
+                    'content' => base64_encode(file_get_contents('tests/Common/file.csv')),
+                ],
+            ],
         ];
-
 
         // WHEN
 
@@ -39,5 +38,4 @@ final class SendMailControllerTest extends AbstractBaseFunctional
 
         self::assertResponseIsSuccessful();
     }
-
 }

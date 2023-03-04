@@ -15,5 +15,4 @@ class AbstractBaseFunctional extends WebTestCase
     {
         $this->client = self::createClient();
     }
-
 }
