@@ -11,5 +11,5 @@ heath_check:
 
 send:
     path:       /send
-    controller: App\Controller\PostSendMailController
+    controller: App\Controller\SendMailController
     methods:    POST

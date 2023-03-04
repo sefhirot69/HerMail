@@ -14,7 +14,7 @@ class HealthcheckControllerTest extends AbstractBaseFunctional
         $this->client
             ->request(
                 'GET',
-                'api/healthcheck',
+                'healthcheck',
             );
 
         $response = $this->client->getResponse();
