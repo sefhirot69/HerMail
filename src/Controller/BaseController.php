@@ -12,10 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 abstract class BaseController extends AbstractController
 {
-    public function __construct(ExceptionsHttpStatusCodeMapping $exceptionMapping)
-    {
+    public function __construct(
+        private readonly ExceptionsHttpStatusCodeMapping $exceptionMapping,
+    ) {
         each(
-            fn (int $httpCode, string $exceptionClass) => $exceptionMapping->register($exceptionClass, $httpCode),
+            fn (int $httpCode, string $exceptionClass) => $this->exceptionMapping->register($exceptionClass, $httpCode),
             $this->exceptions()
         );
     }
