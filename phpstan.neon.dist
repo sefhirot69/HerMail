@@ -2,7 +2,7 @@ parameters:
 	excludePaths:
 		- tests
 	level: max
-	paths: ['src']
+	paths: ['src', 'HerMail']
 	checkMissingIterableValueType: false
 	checkGenericClassInNonGenericObjectType: false
 	checkExplicitMixed: false

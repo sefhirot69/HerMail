@@ -20,5 +20,14 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    HerMail\:
+        resource: '../HerMail/'
+
+    HerMail\Infrastructure\Serialize\AttachmentDtoNormalizer:
+        tags: [ serializer.normalizer ]
+
+    Symfony\Component\Serializer\Normalizer\ObjectNormalizer:
+        tags: [ 'serializer.normalizer' ]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

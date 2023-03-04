@@ -9,6 +9,7 @@ use App\Shared\ExceptionsHttpStatusCodeMapping;
 use function Lambdish\Phunctional\each;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class BaseController extends AbstractController
@@ -27,6 +28,15 @@ abstract class BaseController extends AbstractController
 
     protected function deserialize(string $content, string $class): mixed
     {
-        return $this->serializer->deserialize($content, $class, 'json');
+        return $this->serializer->deserialize(
+            $content,
+            $class,
+            'json',
+            [
+                AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
+                    return $object->getName();
+                },
+            ]
+        );
     }
 }
