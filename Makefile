@@ -36,7 +36,7 @@ composer composer-install ci composer-update composer-require cr: create_env_fil
 			--ignore-platform-reqs \
 			--no-ansi
 # 🐳 Docker Compose
-start: create_env_file deps
+start: create_env_file
 	@echo "🚀 Deploy!!!"
 	@$(DOCKER_COMPOSE) up -d
 stop:
