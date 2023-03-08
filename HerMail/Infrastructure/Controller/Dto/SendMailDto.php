@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace HerMail\Infrastructure\Controller\Dto;
 
+use HerMail\Application\Command\AttachmentCommand;
+use HerMail\Application\Command\SendMailCommand;
+
+use function Lambdish\Phunctional\map;
+
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -31,25 +36,16 @@ final class SendMailDto
         $metadata->addPropertyConstraint('attachments', new Valid());
     }
 
-    /**
-     * @return string
-     */
     public function getTo(): string
     {
         return $this->to;
     }
 
-    /**
-     * @return string
-     */
     public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * @return string
-     */
     public function getBody(): string
     {
         return $this->body;
@@ -61,5 +57,21 @@ final class SendMailDto
     public function getAttachments(): ?array
     {
         return $this->attachments;
+    }
+
+    public function mapToSendMailCommand(): SendMailCommand
+    {
+        return SendMailCommand::create(
+            $this->getTo(),
+            $this->getSubject(),
+            $this->getBody(),
+            map(
+                fn (AttachmentDto $attachmentDto) => AttachmentCommand::create(
+                    $attachmentDto->getName(),
+                    $attachmentDto->getContent()
+                ),
+                $this->getAttachments() ?? []
+            )
+        );
     }
 }

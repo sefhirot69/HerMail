@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace HerMail\Infrastructure\Controller;
 
-use Shared\Domain\Bus\Command\CommandBusInterface;
-use Shared\Domain\Bus\Query\QueryBusInterface;
 use function Lambdish\Phunctional\each;
 
+use Shared\Domain\Bus\Command\CommandBusInterface;
+use Shared\Domain\Bus\Query\QueryBusInterface;
 use Shared\Infrastructure\Exceptions\ExceptionsHttpStatusCodeMapping;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

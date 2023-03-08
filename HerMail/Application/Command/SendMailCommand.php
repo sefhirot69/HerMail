@@ -8,7 +8,43 @@ use Shared\Domain\Bus\Command\Command;
 
 final class SendMailCommand implements Command
 {
-    public function __construct()
+    private function __construct(
+        private readonly string $to,
+        private readonly string $subject,
+        private readonly string $body,
+        /**
+         * @var array<int, AttachmentCommand>
+         */
+        private readonly array $attachments
+    ) {
+    }
+
+    public static function create(
+        string $to,
+        string $subject,
+        string $body,
+        array $attachments,
+    ): self {
+        return new self($to, $subject, $body, $attachments);
+    }
+
+    public function getTo(): string
     {
+        return $this->to;
+    }
+
+    public function getSubject(): string
+    {
+        return $this->subject;
+    }
+
+    public function getBody(): string
+    {
+        return $this->body;
+    }
+
+    public function getAttachments(): array
+    {
+        return $this->attachments;
     }
 }
