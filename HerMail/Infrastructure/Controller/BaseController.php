@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace HerMail\Infrastructure\Controller;
 
+use Shared\Domain\Bus\Command\CommandBusInterface;
+use Shared\Domain\Bus\Query\QueryBusInterface;
 use function Lambdish\Phunctional\each;
 
 use Shared\Infrastructure\Exceptions\ExceptionsHttpStatusCodeMapping;
@@ -19,6 +21,8 @@ abstract class BaseController extends AbstractController
         private readonly ExceptionsHttpStatusCodeMapping $exceptionMapping,
         private readonly SerializerInterface $serializer,
         private readonly ValidatorInterface $validator,
+        protected readonly CommandBusInterface $commandBus,
+//        protected readonly QueryBusInterface $queryBus,
     ) {
         each(
             fn (int $httpCode, string $exceptionClass) => $this->exceptionMapping->register($exceptionClass, $httpCode),

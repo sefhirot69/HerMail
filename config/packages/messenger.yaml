@@ -5,11 +5,7 @@ framework:
         default_bus: query.bus
         buses:
             command.bus:
-                middleware:
-                    - doctrine_transaction
             query.bus:
-                middleware:
-                    - doctrine_transaction
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'

@@ -16,6 +16,6 @@ final class InMemorySymfonyCommandBus implements CommandBusInterface
 
     public function dispatch(Command $command): void
     {
-        // TODO: Implement dispatch() method.
+        $this->commandBus->dispatch($command);
     }
 }
