@@ -13,9 +13,9 @@ final class SendMailCommand implements Command
         private readonly string $subject,
         private readonly string $body,
         /**
-         * @var array<int, AttachmentCommand>
+         * @var ?array<int, AttachmentCommand>
          */
-        private readonly array $attachments
+        private readonly ?array $attachments = null
     ) {
     }
 
@@ -23,7 +23,7 @@ final class SendMailCommand implements Command
         string $to,
         string $subject,
         string $body,
-        array $attachments,
+        ?array $attachments = null,
     ): self {
         return new self($to, $subject, $body, $attachments);
     }
@@ -43,7 +43,10 @@ final class SendMailCommand implements Command
         return $this->body;
     }
 
-    public function getAttachments(): array
+    /**
+     * @return ?array<int, AttachmentCommand>
+     */
+    public function getAttachments(): ?array
     {
         return $this->attachments;
     }

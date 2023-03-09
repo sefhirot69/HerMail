@@ -20,7 +20,7 @@ final class SendMailController extends BaseController
 
         $this->commandBus->dispatch($sendMailDto->mapToSendMailCommand());
 
-        return new JsonResponse([]);
+        return new JsonResponse([], Response::HTTP_ACCEPTED);
     }
 
     protected function exceptions(): array
