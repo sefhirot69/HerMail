@@ -11,6 +11,11 @@ class StringValueObject extends AbstractValueObject
         return $this->value;
     }
 
+    public function fromString(string $value): self
+    {
+        return new self($value);
+    }
+
     public function value(): string
     {
         return $this->value;
