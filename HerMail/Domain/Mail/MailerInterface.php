@@ -4,5 +4,5 @@ namespace HerMail\Domain\Mail;
 
 interface MailerInterface
 {
-    public function send(string $to, string $subject, string $body, ?array $attachment = []): void;
+    public function send(Mail $mail): void;
 }
