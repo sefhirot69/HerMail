@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HerMail\Infrastructure\Mail;
 
+use HerMail\Domain\Mail\Exceptions\MailSendException;
 use HerMail\Domain\Mail\Mail;
 use HerMail\Domain\Mail\MailerInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -27,8 +28,7 @@ final class SymfonyMailer implements MailerInterface
                 ->text((string) $mail->getBody());
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
-            $result = $e;
-            // TODO
+            throw MailSendException::fromThrowable($e);
         }
     }
 }

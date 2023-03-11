@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use HerMail\Domain\Mail\Exceptions\MailSendException;
 use HerMail\Infrastructure\Controller\BaseController;
 use HerMail\Infrastructure\Controller\Dto\SendMailDto;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,6 +28,7 @@ final class SendMailController extends BaseController
     {
         return [
             ValidationFailedException::class => Response::HTTP_BAD_REQUEST,
+            MailSendException::class         => 554,
         ];
     }
 }
