@@ -6,7 +6,7 @@ namespace HerMail\Domain\ValueObject;
 
 use Shared\Domain\ValueObject\StringValueObject;
 
-final class Email extends StringValueObject
+class Email extends StringValueObject
 {
     public function __construct(protected readonly string $value)
     {
@@ -21,5 +21,10 @@ final class Email extends StringValueObject
         }
 
         return true;
+    }
+
+    public static function fromString(string $value): self
+    {
+        return new self($value);
     }
 }

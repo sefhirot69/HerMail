@@ -11,8 +11,8 @@ use HerMail\Domain\ValueObject\Subject;
 final class Mail
 {
     private function __construct(
-        private readonly Email $recipient,
-        private readonly Email $sender,
+        private readonly Recipient $recipient,
+        private readonly Sender $sender,
         private readonly Subject $subject,
         private readonly Body $body,
         /**
@@ -23,8 +23,8 @@ final class Mail
     }
 
     public static function create(
-        Email $recipient,
-        Email $sender,
+        Recipient $recipient,
+        Sender $sender,
         Subject $subject,
         Body $body,
         ?array $attachment = null

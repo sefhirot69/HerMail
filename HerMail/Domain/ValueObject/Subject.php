@@ -26,4 +26,9 @@ final class Subject extends StringValueObject
 
         return true;
     }
+
+    public static function fromString(string $value): self
+    {
+        return new self($value);
+    }
 }

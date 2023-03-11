@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HerMail\Domain\ValueObject;
+namespace HerMail\Domain\Mail;
 
-use Shared\Domain\ValueObject\StringValueObject;
+use HerMail\Domain\ValueObject\Email;
 
-final class Body extends StringValueObject
+final class Sender extends Email
 {
     public static function fromString(string $value): self
     {
