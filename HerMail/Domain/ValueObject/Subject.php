@@ -8,7 +8,7 @@ use Shared\Domain\ValueObject\StringValueObject;
 
 final class Subject extends StringValueObject
 {
-    public function __construct(protected readonly string $value)
+    public function __construct(protected string $value)
     {
         parent::__construct($this->value);
         $this->assertSubject();
@@ -30,5 +30,10 @@ final class Subject extends StringValueObject
     public static function fromString(string $value): self
     {
         return new self($value);
+    }
+
+    public function value(): string
+    {
+        return $this->value;
     }
 }

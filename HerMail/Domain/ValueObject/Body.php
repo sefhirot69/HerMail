@@ -12,4 +12,9 @@ final class Body extends StringValueObject
     {
         return new self($value);
     }
+
+    public function value(): string
+    {
+        return $this->value;
+    }
 }

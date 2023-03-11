@@ -8,9 +8,9 @@ use Shared\Domain\ValueObject\StringValueObject;
 
 class Email extends StringValueObject
 {
-    public function __construct(protected readonly string $value)
+    public function __construct(protected string $value)
     {
-        parent::__construct($this->value);
+        parent::__construct($value);
         $this->assertEmail();
     }
 
@@ -26,5 +26,10 @@ class Email extends StringValueObject
     public static function fromString(string $value): self
     {
         return new self($value);
+    }
+
+    public function value(): string
+    {
+        return $this->value;
     }
 }
