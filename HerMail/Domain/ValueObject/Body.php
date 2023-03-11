@@ -8,5 +8,4 @@ use Shared\Domain\ValueObject\StringValueObject;
 
 final class Body extends StringValueObject
 {
-
 }
