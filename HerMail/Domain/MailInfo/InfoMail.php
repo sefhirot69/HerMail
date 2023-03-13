@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace HerMail\Domain\MaiInfo;
+namespace HerMail\Domain\MailInfo;
 
 use Ramsey\Uuid\UuidInterface;
-use Shared\Domain\Timestamp;
 
 final class InfoMail
 {

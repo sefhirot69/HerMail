@@ -6,10 +6,15 @@ namespace HerMail\Infrastructure\Persistence\Doctrine\Mapping;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
-use HerMail\Domain\MaiInfo\EmailStatus;
+use HerMail\Domain\MailInfo\EmailStatus;
 
 final class EmailStatusType extends StringType
 {
+    public function getName(): string
+    {
+        return 'status_type';
+    }
+
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if (!$value instanceof EmailStatus) {
@@ -19,7 +24,7 @@ final class EmailStatusType extends StringType
         return $value;
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): EmailStatus
     {
         return EmailStatus::from($value);
     }

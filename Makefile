@@ -80,3 +80,9 @@ lint-diff:
 
 static-analysis:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+
+migration/diff:
+	$(SYMFONY) doctrine:migration:diff
+
+migrate:
+	$(SYMFONY) doctrine:migration:migrate --env=dev --no-interaction
