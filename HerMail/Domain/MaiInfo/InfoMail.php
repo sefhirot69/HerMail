@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace HerMail\Domain\MaiInfo;
 
 use Ramsey\Uuid\UuidInterface;
+use Shared\Domain\Timestamp;
 
-final class Info
+final class InfoMail
 {
     private function __construct(
         private readonly UuidInterface $id,

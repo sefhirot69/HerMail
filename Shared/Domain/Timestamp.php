@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HerMail\Domain\MaiInfo;
+namespace Shared\Domain;
 
 final class Timestamp
 {
