@@ -8,7 +8,7 @@ use HerMail\Domain\ValueObject\Body;
 use HerMail\Domain\ValueObject\Email;
 use HerMail\Domain\ValueObject\Subject;
 
-final class Mail
+final class MailParameter
 {
     private function __construct(
         private readonly Recipient $recipient,

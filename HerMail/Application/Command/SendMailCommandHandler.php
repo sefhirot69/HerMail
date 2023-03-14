@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace HerMail\Application\Command;
 
-use HerMail\Domain\Mail\Mail;
 use HerMail\Domain\Mail\MailerInterface;
+use HerMail\Domain\Mail\MailParameter;
 use HerMail\Domain\Mail\Recipient;
 use HerMail\Domain\Mail\Sender;
 use HerMail\Domain\MailInfo\EmailStatus;
@@ -22,18 +22,20 @@ final class SendMailCommandHandler implements CommandHandler
     public function __construct(
         private readonly InfoMailRepositoryInterface $repository,
         private readonly MailerInterface $mailer
-    )
-    {
+    ) {
     }
 
     public function __invoke(SendMailCommand $command): void
     {
-
-        $infoMail = InfoMail::create(Uuid::uuid7(), Timestamp::initTime(), EmailStatus::NOT_SENT);
+        $infoMail = InfoMail::create(
+            Uuid::uuid7(),
+            Timestamp::initTime(),
+            EmailStatus::NOT_SENT
+        );
 
         $this->repository->save($infoMail);
 
-        $mailParameter = Mail::create(
+        $mailParameter = MailParameter::create(
             Recipient::fromString($command->getTo()),
             Sender::fromString('no-reply@gmai.com'),
             Subject::fromString($command->getSubject()),

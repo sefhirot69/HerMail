@@ -8,7 +8,6 @@ use Shared\Infrastructure\Repository\DoctrineRepository;
 
 class DoctrineInfoMailRepository extends DoctrineRepository implements InfoMailRepositoryInterface
 {
-
     public function save(InfoMail $infoMail): void
     {
         $this->persist($infoMail);

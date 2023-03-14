@@ -4,6 +4,7 @@ namespace App\Tests\Unit\Application\Command;
 
 use HerMail\Application\Command\SendMailCommandHandler;
 use HerMail\Domain\Mail\MailerInterface;
+use HerMail\Domain\Mail\MailParameter;
 use HerMail\Domain\MailInfo\EmailStatus;
 use HerMail\Domain\MailInfo\InfoMail;
 use HerMail\Domain\MailInfo\InfoMailRepositoryInterface;
@@ -46,10 +47,13 @@ class SendMailCommandHandlerTest extends TestCase
             ->expects(self::once())
             ->method('send')
             ->with(
-                $command->getTo(),
-                $command->getSubject(),
-                $command->getBody(),
-                $command->getAttachments()
+                self::callback(static function (MailParameter $parameter) use ($command): bool {
+                self::assertEquals($command->getTo(), (string) $parameter->getRecipient());
+                self::assertEquals($command->getSubject(), (string) $parameter->getSubject());
+                self::assertEquals($command->getBody(), (string) $parameter->getBody());
+
+                return true;
+            })
             );
 
         $commandHandler = new SendMailCommandHandler($this->repository, $this->mailer);

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace HerMail\Infrastructure\Mail;
 
 use HerMail\Domain\Mail\Exceptions\MailSendException;
-use HerMail\Domain\Mail\Mail;
 use HerMail\Domain\Mail\MailerInterface;
+use HerMail\Domain\Mail\MailParameter;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface as SymfonyMailerInterface;
 use Symfony\Component\Mime\Email;
@@ -18,7 +18,7 @@ final class SymfonyMailer implements MailerInterface
     ) {
     }
 
-    public function send(Mail $mail): void
+    public function send(MailParameter $mail): void
     {
         try {
             $email = new Email();

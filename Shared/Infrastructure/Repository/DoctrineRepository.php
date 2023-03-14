@@ -19,6 +19,13 @@ class DoctrineRepository
         return $this->entityManager;
     }
 
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $entityClass
+     *
+     * @return EntityRepository<T>
+     */
     protected function getRepository(string $entityClass): EntityRepository
     {
         return $this->entityManager->getRepository($entityClass);
