@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace HerMail\Domain\MailInfo;
 
 use Ramsey\Uuid\UuidInterface;
+use Shared\Domain\Aggregate\AggregateRoot;
 
-final class InfoMail
+final class InfoMail extends AggregateRoot
 {
     private function __construct(
         private readonly UuidInterface $id,
