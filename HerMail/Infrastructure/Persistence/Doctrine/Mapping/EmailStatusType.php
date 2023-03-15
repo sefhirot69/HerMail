@@ -15,13 +15,13 @@ final class EmailStatusType extends StringType
         return 'status_type';
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if (!$value instanceof EmailStatus) {
             throw new \InvalidArgumentException(sprintf('Invalid value \'%s\'', $value));
         }
 
-        return $value;
+        return $value->value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): EmailStatus
