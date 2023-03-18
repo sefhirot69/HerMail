@@ -17,6 +17,12 @@ RUN apt-get update -qq \
 RUN docker-php-ext-enable xdebug
 RUN a2enmod rewrite
 
+## Install Extension Rabbitmq
+RUN apt-get update && \
+    apt-get install -y librabbitmq-dev && \
+    pecl install amqp && \
+    docker-php-ext-enable amqp
+
 WORKDIR /var/www/html
 
 # Copy composer and vendor
