@@ -23,12 +23,12 @@ final class InitTimerMailCommandHandler implements CommandSyncHandler
     {
         $infoMail = InfoMail::create(
             Uuid::uuid7(),
-            Timestamp::initTime(),
+            Timestamp::initTimer(),
             EmailStatus::QUEUED
         );
 
         $this->repository->save($infoMail);
 
-        return $infoMail;
+        return ResponseInitTimer::fromInfoMail($infoMail);
     }
 }

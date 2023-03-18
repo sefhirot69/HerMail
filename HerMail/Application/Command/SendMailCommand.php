@@ -9,6 +9,7 @@ use Shared\Domain\Bus\Command\Command;
 final class SendMailCommand implements Command
 {
     private function __construct(
+        private readonly string $idInfo,
         private readonly string $to,
         private readonly string $subject,
         private readonly string $body,
@@ -20,12 +21,18 @@ final class SendMailCommand implements Command
     }
 
     public static function create(
+        string $idInfo,
         string $to,
         string $subject,
         string $body,
         ?array $attachments = null,
     ): self {
-        return new self($to, $subject, $body, $attachments);
+        return new self($idInfo, $to, $subject, $body, $attachments);
+    }
+
+    public function getIdInfo(): string
+    {
+        return $this->idInfo;
     }
 
     public function getTo(): string

@@ -11,8 +11,8 @@ final class InfoMail extends AggregateRoot
 {
     private function __construct(
         private readonly UuidInterface $id,
-        private readonly Timestamp $date,
-        private readonly EmailStatus $status,
+        private Timestamp $date,
+        private EmailStatus $status,
     ) {
     }
 
@@ -24,27 +24,45 @@ final class InfoMail extends AggregateRoot
         return new self($id, $date, $status);
     }
 
-    /**
-     * @return UuidInterface
-     */
     public function getId(): UuidInterface
     {
         return $this->id;
     }
 
-    /**
-     * @return Timestamp
-     */
     public function getDate(): Timestamp
     {
         return $this->date;
     }
 
-    /**
-     * @return EmailStatus
-     */
     public function getStatus(): EmailStatus
     {
         return $this->status;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->date->getCreatedAt();
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->date->getUpdatedAt();
+    }
+
+    public function finish(): void
+    {
+        $timestamp = $this->getDate();
+        $this->setStatus(EmailStatus::SENT);
+        $this->setDate($timestamp->endTimer());
+    }
+
+    private function setDate(Timestamp $date): void
+    {
+        $this->date = $date;
+    }
+
+    private function setStatus(EmailStatus $status): void
+    {
+        $this->status = $status;
     }
 }

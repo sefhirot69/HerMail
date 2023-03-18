@@ -7,22 +7,22 @@ namespace HerMail\Domain\MailInfo;
 final class Timestamp
 {
     private function __construct(
-        private readonly ?\DateTimeImmutable $createdAt,
-        private readonly ?\DateTimeImmutable $updatedAt,
+        private readonly \DateTimeImmutable $createdAt,
+        private ?\DateTimeImmutable $updatedAt = null,
     ) {
     }
 
-    public static function initTime(): self
+    public static function initTimer(): self
     {
         return new self(new \DateTimeImmutable(), null);
     }
 
-    public static function endTime(): self
+    public function endTimer(): self
     {
-        return new self(null, new \DateTimeImmutable());
+        return new self($this->getCreatedAt(), new \DateTimeImmutable());
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }

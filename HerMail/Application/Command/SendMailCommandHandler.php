@@ -8,10 +8,8 @@ use HerMail\Domain\Mail\MailerInterface;
 use HerMail\Domain\Mail\MailParameter;
 use HerMail\Domain\Mail\Recipient;
 use HerMail\Domain\Mail\Sender;
-use HerMail\Domain\MailInfo\EmailStatus;
 use HerMail\Domain\MailInfo\InfoMail;
 use HerMail\Domain\MailInfo\InfoMailRepositoryInterface;
-use HerMail\Domain\MailInfo\Timestamp;
 use HerMail\Domain\ValueObject\Body;
 use HerMail\Domain\ValueObject\Subject;
 use Ramsey\Uuid\Uuid;
@@ -27,6 +25,8 @@ final class SendMailCommandHandler implements CommandHandler
 
     public function __invoke(SendMailCommand $command): void
     {
+        /** @var InfoMail $infoMail */
+        $infoMail = $this->repository->findById(Uuid::fromString($command->getIdInfo()));
 
         $mailParameter = MailParameter::create(
             Recipient::fromString($command->getTo()),
@@ -37,5 +37,9 @@ final class SendMailCommandHandler implements CommandHandler
         );
 
         $this->mailer->send($mailParameter);
+
+        $infoMail->finish();
+
+        $this->repository->save($infoMail);
     }
 }

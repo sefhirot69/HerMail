@@ -8,5 +8,4 @@ use Shared\Domain\Bus\Command\CommandSync;
 
 final class InitTimerMailCommand implements CommandSync
 {
-
 }

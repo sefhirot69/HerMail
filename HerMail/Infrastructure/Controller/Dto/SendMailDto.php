@@ -59,9 +59,10 @@ final class SendMailDto
         return $this->attachments;
     }
 
-    public function mapToSendMailCommand(): SendMailCommand
+    public function mapToSendMailCommand(string $idInfo): SendMailCommand
     {
         return SendMailCommand::create(
+            $idInfo,
             $this->getTo(),
             $this->getSubject(),
             $this->getBody(),
