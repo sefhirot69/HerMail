@@ -20,20 +20,13 @@ use Shared\Domain\Bus\Command\CommandHandler;
 final class SendMailCommandHandler implements CommandHandler
 {
     public function __construct(
+        private readonly MailerInterface $mailer,
         private readonly InfoMailRepositoryInterface $repository,
-        private readonly MailerInterface $mailer
     ) {
     }
 
     public function __invoke(SendMailCommand $command): void
     {
-        $infoMail = InfoMail::create(
-            Uuid::uuid7(),
-            Timestamp::initTime(),
-            EmailStatus::NOT_SENT
-        );
-
-        $this->repository->save($infoMail);
 
         $mailParameter = MailParameter::create(
             Recipient::fromString($command->getTo()),

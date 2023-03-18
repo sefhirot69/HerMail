@@ -33,6 +33,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onException }
 
+    HerMail\Application\Command\InitTimerMailCommandHandler:
+        tags:
+            -
+                name: messenger.message_handler
+                handles: HerMail\Application\Command\InitTimerMailCommand
+
     _instanceof:
         # all services implementing the CommandHandlerInterface
         # will be registered on the command.bus bus

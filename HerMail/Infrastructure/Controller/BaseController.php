@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HerMail\Infrastructure\Controller;
 
+use Shared\Domain\Bus\Command\CommandBusSyncInterface;
 use function Lambdish\Phunctional\each;
 
 use Shared\Domain\Bus\Command\CommandBusInterface;
@@ -22,6 +23,7 @@ abstract class BaseController extends AbstractController
         private readonly SerializerInterface $serializer,
         private readonly ValidatorInterface $validator,
         protected readonly CommandBusInterface $commandBus,
+        protected readonly CommandBusSyncInterface $commandSyncBus,
 //        protected readonly QueryBusInterface $queryBus,
     ) {
         each(

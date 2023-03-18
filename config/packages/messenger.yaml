@@ -5,6 +5,7 @@ framework:
         default_bus: query.bus
         buses:
             command.bus:
+            command.sync.bus:
             query.bus:
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
