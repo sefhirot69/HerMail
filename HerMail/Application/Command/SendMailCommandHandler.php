@@ -14,6 +14,7 @@ use HerMail\Domain\ValueObject\Body;
 use HerMail\Domain\ValueObject\Subject;
 use Ramsey\Uuid\Uuid;
 use Shared\Domain\Bus\Command\CommandHandler;
+use Shared\Domain\Exceptions\NotFoundException;
 
 final class SendMailCommandHandler implements CommandHandler
 {
@@ -25,8 +26,11 @@ final class SendMailCommandHandler implements CommandHandler
 
     public function __invoke(SendMailCommand $command): void
     {
-        /** @var InfoMail $infoMail */
         $infoMail = $this->repository->findById(Uuid::fromString($command->getIdInfo()));
+
+        if (null === $infoMail) {
+            throw NotFoundException::entityWithId(InfoMail::class, $command->getIdInfo());
+        }
 
         $mailParameter = MailParameter::create(
             Recipient::fromString($command->getTo()),

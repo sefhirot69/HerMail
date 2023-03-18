@@ -9,6 +9,7 @@ use HerMail\Application\Command\ResponseInitTimer;
 use HerMail\Domain\Mail\Exceptions\MailSendException;
 use HerMail\Infrastructure\Controller\BaseController;
 use HerMail\Infrastructure\Controller\Dto\SendMailDto;
+use Shared\Domain\Exceptions\NotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,8 +34,9 @@ final class SendMailController extends BaseController
     {
         return [
             ValidationFailedException::class => Response::HTTP_BAD_REQUEST,
+            NotFoundException::class         => Response::HTTP_NOT_FOUND,
             MailSendException::class         => 554,
-            \Exception::class                => 500,
+            \Exception::class                => Response::HTTP_INTERNAL_SERVER_ERROR,
         ];
     }
 }
