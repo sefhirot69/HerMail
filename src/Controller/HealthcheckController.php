@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use HerMail\Infrastructure\Controller\BaseController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HealthcheckController extends BaseController

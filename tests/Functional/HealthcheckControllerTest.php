@@ -1,19 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Tests\Functional;
 
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class HealthcheckControllerTest extends WebTestCase
+class HealthcheckControllerTest extends AbstractBaseFunctional
 {
-    private KernelBrowser $client;
-
-    protected function setUp(): void
-    {
-        $this->client = self::createClient();
-    }
-
     /** @test */
     public function itShouldReturnAnOk(): void
     {
@@ -24,7 +14,7 @@ class HealthcheckControllerTest extends WebTestCase
         $this->client
             ->request(
                 'GET',
-                'api/healthcheck',
+                'healthcheck',
             );
 
         $response = $this->client->getResponse();

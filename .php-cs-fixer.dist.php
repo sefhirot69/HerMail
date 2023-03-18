@@ -1,7 +1,7 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
-    ->in(['src', 'tests'])
+    ->in(['src', 'tests', 'HerMail', 'Shared'])
     ->exclude(['var']);
 
 return (new PhpCsFixer\Config())

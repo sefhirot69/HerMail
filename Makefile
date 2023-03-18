@@ -36,7 +36,7 @@ composer composer-install ci composer-update composer-require cr: create_env_fil
 			--ignore-platform-reqs \
 			--no-ansi
 # 🐳 Docker Compose
-start: create_env_file deps
+start: create_env_file
 	@echo "🚀 Deploy!!!"
 	@$(DOCKER_COMPOSE) up -d
 stop:
@@ -80,3 +80,9 @@ lint-diff:
 
 static-analysis:
 	$(DOCKER_COMPOSE) exec -it $(CONTAINER) ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+
+migration/diff:
+	$(SYMFONY) doctrine:migration:diff
+
+migrate:
+	$(SYMFONY) doctrine:migration:migrate --env=dev --no-interaction
