@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace HerMail\Application\Command;
+namespace HerMail\Application;
 
 use HerMail\Domain\MailInfo\InfoMail;
 use Shared\Domain\Bus\Command\CommandResponse;
+use Shared\Domain\Bus\Query\QueryResponse;
 
-final class ResponseInitTimer implements CommandResponse, \JsonSerializable
+final class ResponseInfoMail implements CommandResponse, \JsonSerializable, QueryResponse
 {
     public function __construct(
         private readonly string $id,

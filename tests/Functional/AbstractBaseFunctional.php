@@ -7,7 +7,7 @@ namespace App\Tests\Functional;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AbstractBaseFunctional extends WebTestCase
+abstract class AbstractBaseFunctional extends WebTestCase
 {
     protected KernelBrowser $client;
 

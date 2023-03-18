@@ -24,7 +24,7 @@ abstract class BaseController extends AbstractController
         private readonly ValidatorInterface $validator,
         protected readonly CommandBusInterface $commandBus,
         protected readonly CommandBusSyncInterface $commandSyncBus,
-//        protected readonly QueryBusInterface $queryBus,
+        protected readonly QueryBusInterface $queryBus,
     ) {
         each(
             fn (int $httpCode, string $exceptionClass) => $this->exceptionMapping->register($exceptionClass, $httpCode),

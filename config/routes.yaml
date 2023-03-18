@@ -13,3 +13,8 @@ send:
     path:       /send
     controller: App\Controller\SendMailController
     methods:    POST
+
+status:
+    path:       /status/{id}
+    controller: App\Controller\StatusMailController
+    methods:    GET

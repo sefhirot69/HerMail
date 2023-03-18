@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use HerMail\Application\Command\InitTimerMailCommand;
-use HerMail\Application\Command\ResponseInitTimer;
+use HerMail\Application\ResponseInfoMail;
 use HerMail\Domain\Mail\Exceptions\MailSendException;
 use HerMail\Infrastructure\Controller\BaseController;
 use HerMail\Infrastructure\Controller\Dto\SendMailDto;
@@ -22,7 +22,7 @@ final class SendMailController extends BaseController
         /** @var SendMailDto $sendMailDto */
         $sendMailDto = $this->validateRequest($request, SendMailDto::class);
 
-        /** @var ResponseInitTimer $infoInitMail */
+        /** @var ResponseInfoMail $infoInitMail */
         $infoInitMail = $this->commandSyncBus->dispatch(new InitTimerMailCommand());
 
         $this->commandBus->dispatch($sendMailDto->mapToSendMailCommand($infoInitMail->getId()));

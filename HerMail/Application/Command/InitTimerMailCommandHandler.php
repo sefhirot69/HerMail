@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HerMail\Application\Command;
 
+use HerMail\Application\ResponseInfoMail;
 use HerMail\Domain\MailInfo\EmailStatus;
 use HerMail\Domain\MailInfo\InfoMail;
 use HerMail\Domain\MailInfo\InfoMailRepositoryInterface;
@@ -29,6 +30,6 @@ final class InitTimerMailCommandHandler implements CommandSyncHandler
 
         $this->repository->save($infoMail);
 
-        return ResponseInitTimer::fromInfoMail($infoMail);
+        return ResponseInfoMail::fromInfoMail($infoMail);
     }
 }
