@@ -42,7 +42,6 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: rabbitmq
       RABBITMQ_DEFAULT_PASS: pass
-      RABBITMQ_DEFAULT_VHOST: rabbitmq-host
 volumes:
   database_data:
   rabbitmq_data:
