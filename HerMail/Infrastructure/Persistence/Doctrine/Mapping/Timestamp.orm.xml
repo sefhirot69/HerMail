@@ -5,7 +5,7 @@
 
 
     <embeddable name="HerMail\Domain\MailInfo\Timestamp">
-        <field name="createdAt" type="date_immutable"/>
-        <field name="updatedAt" type="date_immutable" nullable="true"/>
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="updatedAt" type="datetime_immutable" nullable="true"/>
     </embeddable>
 </doctrine-mapping>
